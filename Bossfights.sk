@@ -1,0 +1,97 @@
+#Bossfight Skript voor FloppaMC
+#Dit skript bevat:
+# Een Dragon Bossfight voor the End
+# Een Wither Bossfight voor the Nether
+#gemaakt door _apot#2256
+
+#---------------------------------------------------
+
+#Dragon (end)
+on rightclick:
+	clicked block is dragon egg
+	player is in "world_the_end"
+	set event-block to air
+	broadcast "&7&m------------------------------------------"
+	broadcast "&7[&c⚠️&7] &5&lDe Draak is opgeroepen door &d%player%&5&l!"
+	broadcast "&7&m------------------------------------------"
+	create a fake explosion at event-block
+	loop all players:
+		if distance between event-block and loop-player is smaller than 35:
+			send loop-player title "&5I will destroy your planet!" with subtitle "&dPrepare yourself!" for 3 seconds
+			apply slowness 6 to loop-player for 3 seconds
+			apply blindness 6 to loop-player for 3 seconds
+			push loop-player upwards with speed 1
+			push loop-player backwards with speed 2
+	wait 3 seconds
+	create a fake explosion at event-block
+	spawn Ender Dragon at location of event-block
+	create a fake explosion at event-block
+	wait 2 seconds
+	set event-block to bedrock
+	wait 3800  seconds
+	set event-block to dragon egg
+	broadcast "&7&m--------------------------------------------"
+	broadcast "&7[&c&LOpgelet!&7] &5&lDe Draak kan weer opgeroepen worden!"
+	broadcast "&7&m--------------------------------------------"
+	stop
+
+#---------------------------------------------------
+
+#Wither (nether)
+#on right-click:
+	clicked block is dragon egg
+	player is in "world_nether"
+	set event-block to air
+	broadcast "&7&m------------------------------------------"
+	broadcast "&7[&c⚠&7] &4&lDe Wither is opgeroepen door &6%player%&5&l!"
+	broadcast "&7&m------------------------------------------"
+	create a fake explosion at event-block
+	loop all players:
+		if distance between event-block and loop-player is smaller than 60:
+			send loop-player title "&4I am death!" with subtitle "&cDestroyer of worlds!" for 3 seconds
+			apply slowness 6 to loop-player for 3 seconds
+			apply blindness 6 to loop-player for 3 seconds
+			push loop-player upwards with speed 1
+			push loop-player backwards with speed 2
+	wait 2 seconds
+	create a fake explosion at event-block
+	spawn wither at location of event-block
+	create a fake explosion at event-block
+	wait 2 seconds
+	set event-block to bedrock
+	wait 2 seconds
+	set event-block to dragon egg
+	broadcast "&7&m------------------------------------------------------"
+	broadcast "&7[&c⚠&7]&4&lDe Wither kan weer opgeroepen worden!"
+	broadcast "&7&m------------------------------------------------------"
+	stop
+
+#---------------------------------------------------
+
+#Floppa (overworld)
+#on right-click:
+	clicked block is bedrock
+	player is in "world"
+	send "floppa!!"
+
+
+
+
+#---------------------------------------------------
+
+#Kill Drops
+
+on death:
+	if victim is ender dragon:
+		broadcast "&7[&c⚠&7]&5&lDe Draak is verslagen!"
+		clear the drops
+		make console execute "bc (hier komt een prijs)"
+		set {_drop} to diamond 
+		drop {_drop} at victim's location
+on death:
+	if victim is wither:
+		broadcast "&7[&c⚠&7]&4&lDe Wither is verslagen!"
+		clear the drops
+		make console execute "bc (hier komt een prijs)"
+		set {_drop} to diamond 
+		drop {_drop} at victim's location
